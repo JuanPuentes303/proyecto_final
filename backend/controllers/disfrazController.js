@@ -27,9 +27,15 @@ exports.filtrarDisfraces = (req, res) => {
 };
 
 exports.crearDisfraz = (req, res) => {
+  console.log("LLEGÓ PETICIÓN AL BACKEND"); 
+
+  console.log("BODY:", req.body); 
+  console.log("FILE:", req.file); 
+
   const { nombre, descripcion, precio } = req.body;
 
   if (!req.file) {
+    console.log("NO SE RECIBIÓ IMAGEN"); 
     return res.status(400).send("Imagen requerida");
   }
 
@@ -42,13 +48,11 @@ exports.crearDisfraz = (req, res) => {
 
   db.query(sql, [nombre, descripcion, precio, imagen], (err) => {
     if (err) {
-      console.error(err);
+      console.error("ERROR SQL:", err); 
       return res.status(500).send("Error al guardar disfraz");
     }
 
+    console.log("DISFRAZ GUARDADO"); 
     res.send("Disfraz agregado correctamente");
   });
 };
-
-console.log(req.body);
-console.log(req.file);

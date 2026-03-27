@@ -1,7 +1,7 @@
 document.getElementById("formDisfraz").addEventListener("submit", e => {
   e.preventDefault();
 
-  console.log("Enviando formulario...");
+  console.log("Enviando formulario..."); 
 
   const formData = new FormData(e.target);
 
@@ -11,8 +11,8 @@ document.getElementById("formDisfraz").addEventListener("submit", e => {
   })
   .then(res => res.text())
   .then(data => {
-    console.log(data);
+    console.log("Respuesta del servidor:", data);
     alert(data);
   })
-  .catch(err => console.error(err));
+  .catch(err => console.error("Error:", err)); 
 });
