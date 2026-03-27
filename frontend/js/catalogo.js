@@ -25,9 +25,16 @@ function mostrar(disfraces) {
         <p>${d.descripcion}</p>
         <p>$${d.precio}</p>
         <p>${d.estado}</p>
+
+        <button onclick="irReservar(${d.id})">Reservar</button>
       </div>
     `;
   });
+}
+
+function irReservar(id) {
+  localStorage.setItem("disfrazSeleccionado", id);
+  window.location.href = "reserva.html";
 }
 
 cargarDisfraces();

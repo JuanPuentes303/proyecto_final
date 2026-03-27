@@ -59,3 +59,6 @@ app.post("/admin/disfraz", upload.single("imagen"), (req, res) => {
     res.send("Disfraz agregado");
   });
 });
+
+const reservaRoutes = require("./routes/reservaRoutes");
+app.use("/", reservaRoutes);
