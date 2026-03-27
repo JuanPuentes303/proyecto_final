@@ -19,3 +19,5 @@ app.use("/uploads", express.static("uploads"));
 app.listen(3000, () => {
   console.log("Servidor en puerto 3000");
 });
+
+app.use(express.static("../frontend"));
