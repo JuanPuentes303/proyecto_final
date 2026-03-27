@@ -22,3 +22,7 @@ app.get("/test-db", (req, res) => {
     res.send("Base de datos conectada");
   });
 });
+
+const authRoutes = require("./routes/authRoutes");
+
+app.use("/", authRoutes);

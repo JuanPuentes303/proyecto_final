@@ -1,0 +1,27 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #eceffc;
+}
+
+.container {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 40px;
+    color: white;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+}
+
+h2 {
+    margin: 0 0 24px 0;
+}
+
+.space { 
+    margin: 12px 0;
+    border-radius: 10px;
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="../js/login.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+
+        <input type="email" id="correo" class="space" placeholder="Correo">
+        <input type="password" id="password" class="space" placeholder="Contraseña">
+
+        <button onclick="login()" type="button" class="btn btn-primary"
+            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+            Entrar
+        </button>
+
+        <p class="space">¿No tienes cuenta?<a href="registro.html">Regístrate</a></p>
+    </div>
+
+</body>
+</html>
