@@ -49,3 +49,6 @@ exports.crearDisfraz = (req, res) => {
     res.send("Disfraz agregado correctamente");
   });
 };
+
+console.log(req.body);
+console.log(req.file);

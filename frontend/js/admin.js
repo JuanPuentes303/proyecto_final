@@ -1,6 +1,8 @@
 document.getElementById("formDisfraz").addEventListener("submit", e => {
   e.preventDefault();
 
+  console.log("Enviando formulario...");
+
   const formData = new FormData(e.target);
 
   fetch("http://localhost:3000/admin/disfraz", {
@@ -8,5 +10,9 @@ document.getElementById("formDisfraz").addEventListener("submit", e => {
     body: formData
   })
   .then(res => res.text())
-  .then(data => alert(data));
+  .then(data => {
+    console.log(data);
+    alert(data);
+  })
+  .catch(err => console.error(err));
 });
