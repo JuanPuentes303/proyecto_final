@@ -34,6 +34,11 @@ exports.crearReserva = (req, res) => {
     db.query(sqlInsert, [id_usuario, id_disfraz, fecha_inicio, fecha_fin, tipo], (err) => {
       if (err) return res.status(500).send("Error al reservar");
 
+      db.query(
+        "UPDATE disfraces SET estado = 'reservado' WHERE id = ?",
+        [id_disfraz]
+      );
+
       res.send("Reserva realizada correctamente");
     });
   });
