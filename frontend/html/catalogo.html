@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogo</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/catalogo.js"></script>
+</head>
+<body>
+    
+    <div class="container">
+        <nav>
+            <input type="text" id="filtroNombre" placeholder="Buscar">
+            <select id="filtroEstado">
+                <option value="">Todos</option>
+                <option value="disponible">Disponible</option>
+                <option value="reservado">Reservado</option>
+            </select>
+
+            <button onclick="filtrar()">Filtrar</button>
+        </nav>
+    </div>
+    
+    <div id="lista"></div>
+
+</body>
+</html>
