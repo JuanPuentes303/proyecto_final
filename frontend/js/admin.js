@@ -4,14 +4,16 @@ document.getElementById("formDisfraz").addEventListener("submit", e => {
   console.log("Enviando formulario..."); 
 
   const formData = new FormData(e.target);
-  const usuario = JSON.parse(localStorage.getItem("usuario"));
+  const data = JSON.parse(localStorage.getItem("usuario"));
 
-if (!usuario) {
+if (!data) {
   alert("Debes iniciar sesión");
   return;
 }
 
-formData.append("rol", data.usuario.rol);
+  const usuario = data.usuario;
+
+formData.append("rol", usuario.rol);
 
   fetch("http://localhost:3000/admin/disfraz", {
     method: "POST",
