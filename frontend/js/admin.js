@@ -11,7 +11,7 @@ if (!usuario) {
   return;
 }
 
-formData.append("rol", usuario.rol);
+formData.append("rol", data.usuario.rol);
 
   fetch("http://localhost:3000/admin/disfraz", {
     method: "POST",
