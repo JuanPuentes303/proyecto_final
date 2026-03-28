@@ -18,8 +18,8 @@ router.get("/disfraces/filtro", controller.filtrarDisfraces);
 
 router.post(
   "/admin/disfraz",
-  esAdmin,
   upload.single("imagen"),
+  esAdmin,
   controller.crearDisfraz
 );
 
