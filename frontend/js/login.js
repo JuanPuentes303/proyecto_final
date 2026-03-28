@@ -12,8 +12,8 @@ function login() {
     return res.json();
   })
   .then(data => {
-    localStorage.setItem("usuario", JSON.stringify(data.usuario));
-
+    localStorage.setItem("usuario", JSON.stringify(data));
+    
     if (data.usuario.rol === "admin") {
       window.location.href = "admin.html";
     } else {
