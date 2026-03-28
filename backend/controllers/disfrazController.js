@@ -29,6 +29,11 @@ exports.filtrarDisfraces = (req, res) => {
 exports.crearDisfraz = (req, res) => {
   console.log("LLEGÓ PETICIÓN AL BACKEND"); 
 
+  console.log("Datos recibidos:");
+  console.log("Nombre:", nombre);
+  console.log("Descripcion:", descripcion);
+  console.log("Precio:", precio);
+  console.log("Archivo:", req.file);
   console.log("BODY:", req.body); 
   console.log("FILE:", req.file); 
 
@@ -48,7 +53,7 @@ exports.crearDisfraz = (req, res) => {
 
   db.query(sql, [nombre, descripcion, precio, imagen], (err) => {
     if (err) {
-      console.error("ERROR SQL:", err); 
+      console.error("ERROR SQL:", err);
       return res.status(500).send("Error al guardar disfraz");
     }
 
