@@ -1,6 +1,8 @@
 const db = require("../config/db");
 
 exports.crearReserva = (req, res) => {
+  console.log("BODY RESERVA:", req.body);
+
   const { id_usuario, id_disfraz, fecha_inicio, fecha_fin, tipo } = req.body;
 
   if (!id_usuario || !id_disfraz || !fecha_inicio || !fecha_fin) {
