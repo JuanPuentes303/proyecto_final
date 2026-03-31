@@ -1,7 +1,19 @@
-function cargarDisfraces() {
+window.addEventListener("DOMContentLoaded", () => {
+  cargarDestacados();
+});
+
+function cargarDestacados() {
   fetch("http://localhost:3000/disfraces")
     .then(res => res.json())
-    .then(data => mostrar(data));
+    .then(disfraces => {
+      const aleatorios = disfraces
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 6);
+
+      mostrarDisfraces(aleatorios, "destacados");
+
+      mostrarDisfraces(disfraces, "resultados");
+    });
 }
 
 function filtrar() {
@@ -10,21 +22,28 @@ function filtrar() {
 
   fetch(`http://localhost:3000/disfraces/filtro?nombre=${nombre}&estado=${estado}`)
     .then(res => res.json())
-    .then(data => mostrar(data));
+    .then(data => {
+      mostrarDisfraces(data, "resultados");
+    });
 }
 
-function mostrar(disfraces) {
-  const lista = document.getElementById("lista");
-  lista.innerHTML = "";
+function mostrarDisfraces(lista, contenedorId) {
+  const contenedor = document.getElementById(contenedorId);
+  contenedor.innerHTML = "";
 
-  disfraces.forEach(d => {
-    lista.innerHTML += `
-      <div class="card">
+  if (lista.length === 0) {
+    contenedor.innerHTML = "<p>No se encontraron disfraces</p>";
+    return;
+  }
+
+  lista.forEach(d => {
+    contenedor.innerHTML += `
+      <div class="tarjeta">
+        <img src="http://localhost:3000/uploads/${d.imagen}">
         <h3>${d.nombre}</h3>
-        <img src="http://localhost:3000/uploads/${d.imagen}" width="150">
         <p>${d.descripcion}</p>
         <p>$${d.precio}</p>
-        <p>${d.estado}</p>
+        <p><strong>${d.estado}</strong></p>
 
         <button onclick="irReservar(${d.id})">Reservar</button>
       </div>
@@ -36,5 +55,3 @@ function irReservar(id) {
   localStorage.setItem("disfrazSeleccionado", id);
   window.location.href = "reserva.html";
 }
-
-cargarDisfraces();
