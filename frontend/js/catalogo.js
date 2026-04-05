@@ -43,7 +43,7 @@ function crearTarjeta(disfraz) {
       <h3>${disfraz.nombre}</h3>
       <p>${disfraz.descripcion}</p>
       <p>$${disfraz.precio}</p>
-      <p><strong>${disfraz.estado}</strong></p>
+      <p><strong>${disfraz.estado_actual}</strong></p>
       <button onclick="irReservar(${disfraz.id})">Reservar</button>
     </div>
   `;

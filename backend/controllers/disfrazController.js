@@ -1,8 +1,24 @@
 const db = require("../config/db");
 
 exports.obtenerDisfraces = (req, res) => {
-  db.query("SELECT * FROM disfraces", (err, result) => {
+  const sql = `
+    SELECT d.*,
+      CASE
+        WHEN EXISTS (
+          SELECT 1
+          FROM reservas r
+          WHERE r.id_disfraz = d.id
+          AND CURDATE() BETWEEN r.fecha_inicio AND r.fecha_fin
+        )
+        THEN 'reservado'
+        ELSE 'disponible'
+      END AS estado_actual
+    FROM disfraces d
+  `;
+
+  db.query(sql, (err, result) => {
     if (err) return res.status(500).send("Error");
+
     res.json(result);
   });
 };
