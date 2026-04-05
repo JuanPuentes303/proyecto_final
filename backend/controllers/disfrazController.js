@@ -27,7 +27,6 @@ exports.filtrarDisfraces = (req, res) => {
 };
 
 exports.crearDisfraz = (req, res) => {
-  console.log("LLEGÓ PETICIÓN AL BACKEND"); 
 
   const { nombre, descripcion, precio } = req.body;
 
@@ -36,8 +35,6 @@ exports.crearDisfraz = (req, res) => {
   console.log("Descripcion:", descripcion);
   console.log("Precio:", precio);
   console.log("Archivo:", req.file);
-  console.log("BODY:", req.body); 
-  console.log("FILE:", req.file); 
 
   if (!req.file) {
     console.log("NO SE RECIBIÓ IMAGEN"); 

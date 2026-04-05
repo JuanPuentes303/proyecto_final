@@ -1,17 +1,15 @@
 const db = require("../config/db");
 
 exports.crearReserva = (req, res) => {
-  console.log("BODY RESERVA:", req.body);
-
   const { id_usuario, id_disfraz, fecha_inicio, fecha_fin, tipo } = req.body;
 
-  if (!id_usuario || !id_disfraz || !fecha_inicio || !fecha_fin) {
+  if (!id_usuario || !id_disfraz || !fecha_inicio || !fecha_fin || !tipo) {
     return res.status(400).send("Datos incompletos");
-}
+  }
 
   if (new Date(fecha_inicio) > new Date(fecha_fin)) {
-    return res.send("Fechas inválidas");
-}
+    return res.status(400).send("Fechas inválidas");
+  }
 
   const sqlValidacion = `
     SELECT * FROM reservas

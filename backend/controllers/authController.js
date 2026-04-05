@@ -1,39 +1,30 @@
 const db = require("../config/db");
 
-exports.registro = (req, res) => {
-  const { nombre, correo, contraseña } = req.body;
+//registro
+exports.registrar = (req, res) => {
+  const { nombre, correo, contraseña, rol } = req.body;
 
   if (!nombre || !correo || !contraseña) {
-    return res.status(400).send("Campos incompletos");
+    return res.status(400).send("Datos incompletos");
   }
 
-  db.query(
-    "SELECT * FROM usuarios WHERE correo = ?",
-    [correo],
-    (err, result) => {
-      if (result.length > 0) {
-        return res.status(400).send("Correo ya registrado");
-      }
+  const sql = `
+    INSERT INTO usuarios (nombre, correo, contraseña, rol)
+    VALUES (?, ?, ?, ?)
+  `;
 
-      const sql = `
-        INSERT INTO usuarios (nombre, correo, contraseña, rol)
-        VALUES (?, ?, ?, 'cliente')
-      `;
-
-      db.query(sql, [nombre, correo, contraseña], (err) => {
-        if (err) return res.status(500).send("Error al registrar");
-        res.send("Usuario registrado correctamente");
-      });
+  db.query(sql, [nombre, correo, contraseña, rol || "cliente"], err => {
+    if (err) {
+      return res.status(500).send("Error al registrar");
     }
-  );
+
+    res.send("Usuario registrado correctamente");
+  });
 };
 
+//login
 exports.login = (req, res) => {
   const { correo, contraseña } = req.body;
-
-  if (!correo || !contraseña) {
-    return res.status(400).send("Campos incompletos");
-  }
 
   const sql = `
     SELECT * FROM usuarios
@@ -41,10 +32,10 @@ exports.login = (req, res) => {
   `;
 
   db.query(sql, [correo, contraseña], (err, result) => {
-    if (err) return res.status(500).send("Error en servidor");
+    if (err) return res.status(500).send("Error");
 
     if (result.length === 0) {
-      return res.status(401).send("Credenciales incorrectas");
+      return res.status(401).send("Credenciales inválidas");
     }
 
     res.json({
